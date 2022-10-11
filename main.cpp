@@ -1,25 +1,32 @@
 #include<stdio.h>
+#include <iostream>
 
-//int calc(int a, int b){
-//	return a + b;
-//}
-//
-//float calc(float d, float e) {
-//	return d + e + 10;
-//}
+void drawImage() {
+	
+	std::cout << "‰æ‘œ‚ð•`‰æ" << std::endl;
+}
 
-template<typename Type>
-Type add(Type a,Type b){
-	return static_cast<Type>(a + b);
+int drawImage(int x, int y)
+{
+	std::cout << "‰æ‘œ‚ð•`‰æ",
+	std::cout << " x : " << x,
+	std::cout << " y : " << y<< std::endl;
+	return 0;
+}
+
+int drawImage(int x, int y,int z)
+{
+	std::cout << "‰æ‘œ‚ð•`‰æ",
+	std::cout << " x : " << x,
+	std::cout << " y : " << y ,
+	std::cout << " z : " << z << std::endl;
+	return 0;
 }
 
 int main() {
-	/*int x = 114;
-	int y = 514;*/
-	/*float l = 3.64f;
-	float m = 3.64f;*/
-	printf("%d\n", add<int>(114,514));
-	printf("%f\n", add<float>(11.4f,51.4f));
-	return 0;
 	
+	drawImage();
+	drawImage(2, 4);
+	drawImage(3, 6, 9);
+	return 0;
 }
