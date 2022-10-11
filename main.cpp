@@ -1,32 +1,40 @@
 #include<stdio.h>
+#include<typeinfo>
 #include <iostream>
+using namespace std;
 
-void drawImage() {
-	
-	std::cout << "‰æ‘œ‚ğ•`‰æ" << std::endl;
+template<typename T>
+T Big(T a,T b)
+{	
+	if (static_cast<T> (a) > static_cast<T> (b))
+	{
+		return static_cast<T>(b);
+	}
+	else
+	{
+		return static_cast<T>(a);
+	}
 }
 
-int drawImage(int x, int y)
+int main() 
 {
-	std::cout << "‰æ‘œ‚ğ•`‰æ",
-	std::cout << " x : " << x,
-	std::cout << " y : " << y<< std::endl;
-	return 0;
-}
+	//		intŒ^‚Ì’l‚ğ”äŠr
+	int x = 10;
+	int y = 20;
 
-int drawImage(int x, int y,int z)
-{
-	std::cout << "‰æ‘œ‚ğ•`‰æ",
-	std::cout << " x : " << x,
-	std::cout << " y : " << y ,
-	std::cout << " z : " << z << std::endl;
-	return 0;
-}
+	cout << "x:" << x << "‚Æy:" << y << "‚ğ”äŠr" << endl;
+	auto a = Big(x, y);
+	cout << "‘å‚«‚¢’l‚Í" << a << endl;
+	cout << "a‚ÌŒ^:" << typeid(a).name() << endl;		//#include<typeinfo>‚ª•K—v
 
-int main() {
-	
-	drawImage();
-	drawImage(2, 4);
-	drawImage(3, 6, 9);
+	//		floatŒ^‚Ì’l‚ğ”äŠr
+	float z = 12.3f;
+	float w = 45.6f;
+
+	cout << "z:" << z << "‚Æw:" << w << "‚ğ”äŠr" << endl;
+	auto b = Big(z, w);
+	cout << "‘å‚«‚¢’l‚Í" << b << endl;
+	cout << "b‚ÌŒ^:" << typeid(b).name() << endl;		//#include<typeinfo>‚ª•K—v
+
 	return 0;
 }
