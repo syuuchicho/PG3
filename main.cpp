@@ -1,40 +1,59 @@
 #include<stdio.h>
-#include<typeinfo>
-#include <iostream>
-using namespace std;
+#include<Windows.h>
+#include<string.h>
+#include<functional>
+#include<stdlib.h>
+#include<time.h>
 
-template<typename T>
-T Big(T a,T b)
-{	
-	if (static_cast<T> (a) > static_cast<T> (b))
+typedef void (*PFunc)(int*);
+
+//コールバック関数
+void DispResult(int* s) {
+	printf("結果は.....", *s);
+}
+
+void setTimeout(PFunc p, int second) {
+	Sleep(second * 1000);//3秒待つ
+
+	p(&second);
+}
+
+int main(int argc, const char* argv[])
+{
+	srand(time(nullptr));
+	int num = rand() % 6 + 1;	//抽選
+	int c = 0;
+	int time = 180;
+	int count = -1;
+	int result = 0;
+
+	//入力説明
+	printf("奇数だったら１, 偶数だったら2を入力してください\n");
+
+	PFunc p;
+	p = DispResult;
+
+	//入力
+	if (num % 2 == 0)
 	{
-		return static_cast<T>(b);
+		result = 2;//偶を代入
+	}
+	else if (num % 2 == 1)
+	{
+		result = 1;//奇を代入
+	}
+	scanf_s("%d", &c);
+
+	setTimeout(p, 3);
+	printf("%d\n", num);
+
+	if (result == c)
+	{
+		printf("当たり！\n");
 	}
 	else
 	{
-		return static_cast<T>(a);
+		printf("ハズレ！\n");
 	}
-}
-
-int main() 
-{
-	//		int型の値を比較
-	int x = 10;
-	int y = 20;
-
-	cout << "x:" << x << "とy:" << y << "を比較" << endl;
-	auto a = Big(x, y);
-	cout << "大きい値は" << a << endl;
-	cout << "aの型:" << typeid(a).name() << endl;		//#include<typeinfo>が必要
-
-	//		float型の値を比較
-	float z = 12.3f;
-	float w = 45.6f;
-
-	cout << "z:" << z << "とw:" << w << "を比較" << endl;
-	auto b = Big(z, w);
-	cout << "大きい値は" << b << endl;
-	cout << "bの型:" << typeid(b).name() << endl;		//#include<typeinfo>が必要
-
 	return 0;
 }
