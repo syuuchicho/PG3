@@ -1,59 +1,48 @@
 #include<stdio.h>
-#include<Windows.h>
-#include<string.h>
-#include<functional>
-#include<stdlib.h>
-#include<time.h>
+#include <iostream>
+#include<vector>
+#include<list>
+using namespace std;
 
-typedef void (*PFunc)(int*);
-
-//コールバック関数
-void DispResult(int* s) {
-	printf("結果は.....", *s);
+//英語表記
+void Cout(list<string> a) {
+	for (list<string>::iterator itr = a.begin(); itr != a.end(); ++itr)
+	{
+		cout << *itr << endl;//英語表記
+	}
 }
 
-void setTimeout(PFunc p, int second) {
-	Sleep(second * 1000);//3秒待つ
-
-	p(&second);
-}
-
-int main(int argc, const char* argv[])
+int main()
 {
-	srand(time(nullptr));
-	int num = rand() % 6 + 1;	//抽選
-	int c = 0;
-	int time = 180;
-	int count = -1;
-	int result = 0;
+	list<string> a{"Tokyo","Yurakucho","shimbashi","Hamamatsucho","Tamachi","Shinagawa","Osaki",
+					"Gotanda","Meguro","Ebisu","Shibuya","Harajuku","Yoyogi","Shinjuku","Shin-Okubo","Takadanobaba","Mejiro",
+					"Ikebukuro","Otsuka","Sugamo","Komagome","Tabata","Nippori","Uguisudani","Ueno","Okamachi",
+					"Akihabara","Kanda\n"};
 
-	//入力説明
-	printf("奇数だったら１, 偶数だったら2を入力してください\n");
+	printf("1970年\n");
+	Cout(a);//英語表記
 
-	PFunc p;
-	p = DispResult;
-
-	//入力
-	if (num % 2 == 0)
+	printf("2019年\n");
+	for (list<string>::iterator itr = a.begin(); itr != a.end(); ++itr)
 	{
-		result = 2;//偶を代入
+		if (*itr=="Nippori")
+		{
+			itr=a.insert(itr,"Nishi-nippori");//西日暮里を挿入
+			++itr;
+		}
 	}
-	else if (num % 2 == 1)
-	{
-		result = 1;//奇を代入
-	}
-	scanf_s("%d", &c);
+	Cout(a);//英語表記
 
-	setTimeout(p, 3);
-	printf("%d\n", num);
+	printf("2022年\n");
+	for (list<string>::iterator itr = a.begin(); itr != a.end(); ++itr)
+	{
+		if (*itr == "Shinagawa")
+		{
+			itr = a.insert(itr, "TakanawaGateway");//西日暮里を挿入
+			++itr;
+		}
+	}
+	Cout(a);//英語表記
 
-	if (result == c)
-	{
-		printf("当たり！\n");
-	}
-	else
-	{
-		printf("ハズレ！\n");
-	}
 	return 0;
 }
