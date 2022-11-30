@@ -18,13 +18,15 @@ int main()
 					"Ikebukuro","Otsuka","Sugamo","Komagome","Tabata","Nippori","Uguisudani","Ueno","Okamachi",
 					"Akihabara","Kanda\n"};
 
+	const char b[] = {"Nippori"};
+
 	printf("1970年\n");
 	Cout(a);//英語表記
 
 	printf("2019年\n");
 	for (list<const char*>::iterator itr = a.begin(); itr != a.end(); ++itr)
 	{
-		if (*itr=="Nippori")
+		if (strcmp(*itr, "Nippori")==0)
 		{
 			itr=a.insert(itr,"Nishi-nippori");//西日暮里を挿入
 			++itr;
@@ -35,7 +37,7 @@ int main()
 	printf("2022年\n");
 	for (list<const char*>::iterator itr = a.begin(); itr != a.end(); ++itr)
 	{
-		if (*itr == "Shinagawa")
+		if (strcmp(*itr , "Shinagawa")==0)
 		{
 			itr = a.insert(itr, "TakanawaGateway");//高輪ゲートウェイを挿入
 			++itr;
