@@ -1,12 +1,11 @@
 #include<stdio.h>
 #include <iostream>
-#include<vector>
 #include<list>
 using namespace std;
 
 //英語表記
-void Cout(list<string> a) {
-	for (list<string>::iterator itr = a.begin(); itr != a.end(); ++itr)
+void Cout(list<const char*> a) {
+	for (list<const char*>::iterator itr = a.begin(); itr != a.end(); ++itr)
 	{
 		cout << *itr << endl;//英語表記
 	}
@@ -14,7 +13,7 @@ void Cout(list<string> a) {
 
 int main()
 {
-	list<string> a{"Tokyo","Yurakucho","shimbashi","Hamamatsucho","Tamachi","Shinagawa","Osaki",
+	list<const char*> a{"Tokyo","Yurakucho","shimbashi","Hamamatsucho","Tamachi","Shinagawa","Osaki",
 					"Gotanda","Meguro","Ebisu","Shibuya","Harajuku","Yoyogi","Shinjuku","Shin-Okubo","Takadanobaba","Mejiro",
 					"Ikebukuro","Otsuka","Sugamo","Komagome","Tabata","Nippori","Uguisudani","Ueno","Okamachi",
 					"Akihabara","Kanda\n"};
@@ -23,7 +22,7 @@ int main()
 	Cout(a);//英語表記
 
 	printf("2019年\n");
-	for (list<string>::iterator itr = a.begin(); itr != a.end(); ++itr)
+	for (list<const char*>::iterator itr = a.begin(); itr != a.end(); ++itr)
 	{
 		if (*itr=="Nippori")
 		{
@@ -34,7 +33,7 @@ int main()
 	Cout(a);//英語表記
 
 	printf("2022年\n");
-	for (list<string>::iterator itr = a.begin(); itr != a.end(); ++itr)
+	for (list<const char*>::iterator itr = a.begin(); itr != a.end(); ++itr)
 	{
 		if (*itr == "Shinagawa")
 		{
