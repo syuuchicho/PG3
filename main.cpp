@@ -38,7 +38,7 @@ int main()
 	{
 		if (*itr == "Shinagawa")
 		{
-			itr = a.insert(itr, "TakanawaGateway");//¼“ú•é—¢‚ğ‘}“ü
+			itr = a.insert(itr, "TakanawaGateway");//‚—ÖƒQ[ƒgƒEƒFƒC‚ğ‘}“ü
 			++itr;
 		}
 	}
