@@ -1,47 +1,60 @@
 #include<stdio.h>
-#include <iostream>
-#include<list>
+#include<stdlib.h>
+
+
 using namespace std;
 
-//英語表記
-void Cout(list<const char*> a) {
-	for (list<const char*>::iterator itr = a.begin(); itr != a.end(); ++itr)
-	{
-		cout << *itr << endl;//英語表記
-	}
-}
+
+typedef struct cell
+{
+	int val;
+	struct cell* next;
+}CELL;
+
+void create(CELL* head, int val);	//データを追加する関数のプロトタイプ宣言　
+void index(CELL* head);	//一覧を表示する関数のプロトタイプ宣言
 
 int main()
 {
-	list<const char*> a{"Tokyo","Yurakucho","shimbashi","Hamamatsucho","Tamachi","Shinagawa","Osaki",
-					"Gotanda","Meguro","Ebisu","Shibuya","Harajuku","Yoyogi","Shinjuku","Shin-Okubo","Takadanobaba","Mejiro",
-					"Ikebukuro","Otsuka","Sugamo","Komagome","Tabata","Nippori","Uguisudani","Ueno","Okamachi",
-					"Akihabara","Kanda\n"};
+	int val;
 
-	printf("1970年\n");
-	Cout(a);//英語表記
+	CELL head;
+	head.next = nullptr;
 
-	printf("2019年\n");
-	for (list<const char*>::iterator itr = a.begin(); itr != a.end(); ++itr)
+	while (true)
 	{
-		if (*itr=="Nippori")
-		{
-			itr=a.insert(itr,"Nishi-nippori");//西日暮里を挿入
-			++itr;
-		}
-	}
-	Cout(a);//英語表記
+		scanf_s("%d", &val);
 
-	printf("2022年\n");
-	for (list<const char*>::iterator itr = a.begin(); itr != a.end(); ++itr)
-	{
-		if (*itr == "Shinagawa")
-		{
-			itr = a.insert(itr, "TakanawaGateway");//高輪ゲートウェイを挿入
-			++itr;
-		}
+		//最後尾にセルを追加
+		create(&head, val);
+
+		//リスト一覧の表示
+		index(&head);
 	}
-	Cout(a);//英語表記
 
 	return 0;
+}
+
+void create(CELL*head,int val)
+{
+	CELL *beta;
+	//新規作成するセル分のメモリを確保する
+	beta = (CELL*)malloc(sizeof(CELL));
+
+	beta->val = val;
+	beta->next = nullptr;
+
+	//最後(最新)のセルのアドレスの1つめの処理は引数から持ってきた
+	//リストのうち最初にセルのアドレスが該当する
+	while (head->next!=nullptr){
+		head = head->next;
+	}
+	head->next = beta;
+}
+
+void index(CELL* head) {
+	while (head->next!=nullptr){
+		head = head->next;
+		printf("%d\n", head->val);
+	}
 }
