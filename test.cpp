@@ -1,4 +1,12 @@
 #include"test.h"
+
+//À‘Ì
+TestSingleton::TestSingleton()
+{}
+TestSingleton::~TestSingleton()
+{}
+
+
 TestSingleton* TestSingleton::GetInstance() {
 	//ŠÖ”“àstatic•Ï”‚Æ‚µ‚ÄéŒ¾‚·‚é
 	static TestSingleton instance;
@@ -6,7 +14,7 @@ TestSingleton* TestSingleton::GetInstance() {
 	return &instance;
 }
 
-void TestSingleton::Update()
+void TestSingleton::Update(int &x)
 {
-	
+	x++;
 }

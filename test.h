@@ -14,5 +14,5 @@ public:
 
 	static TestSingleton* GetInstance();//Ã“Iƒƒ“ƒo[ŠÖ”
 
-	void Update();
+	void Update(int &x);
 };
