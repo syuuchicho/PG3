@@ -1,15 +1,26 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include"test.h"
+#include<iostream>
+#include"student.h"
+using namespace std;
+
+//main.cppの外で宣言
+int Student::studentCount;
 
 int main()
 {
-	int x = 0;
-	printf("x=%d\n", x);
-	//インスタンスを取得して、すぐ使用
-	TestSingleton::GetInstance()->Update(x);
-	printf("x=%d\n", x);
+	Student* student1 = new Student;//1
+	Student* student2 = new Student;//2
+	Student* student3 = new Student;//3
 
+	cout << Student::studentCount << endl;
+
+	delete student1;//3-1
+
+	cout << Student::studentCount << endl;
+	delete student2;//2-1
+	delete student3;//1-1
+	cout << Student::studentCount << endl;
+
+	
 	return 0;
 }
 
